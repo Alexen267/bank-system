@@ -1,0 +1,7 @@
+export enum ActionType {
+  LOGIN = 'LOGIN',
+  DEPOSIT = 'DEPOSIT',
+  WITHDRAW = 'WITHDRAW',
+  TRANSFER = 'TRANSFER',
+  BANK_STATEMENT = 'BANK_STATEMENT',
+}
