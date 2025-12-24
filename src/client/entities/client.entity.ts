@@ -16,8 +16,18 @@ export class Client {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ length: 125 })
+  firstName: string;
+
+  @Column({ length: 125 })
+  lastName: string;
+
+  @Index({ unique: true })
   @Column({ length: 150 })
-  name: string;
+  username: string;
+
+  @Column({ type: 'varchar', select: false })
+  password: string;
 
   @Index({ unique: true })
   @Column({ length: 16 })

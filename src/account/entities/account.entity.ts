@@ -19,10 +19,10 @@ export class Account {
   @Generated('uuid')
   accountNo: string;
 
-  @Column('decimal')
+  @Column({ type: 'decimal', default: 500 })
   balance: number;
 
-  @Column()
+  @Column({ type: 'boolean', default: true })
   active: boolean;
 
   @CreateDateColumn()

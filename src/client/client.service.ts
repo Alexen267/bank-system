@@ -1,6 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateClientDto } from './dto/create-client.dto';
-import { UpdateClientDto } from './dto/update-client.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Client } from './entities/client.entity';
 import { Repository } from 'typeorm';
@@ -12,10 +10,6 @@ export class ClientService {
     @InjectRepository(Client)
     private readonly clientRepo: Repository<Client>,
   ) {}
-
-  create(createClientDto: CreateClientDto) {
-    return 'This action adds a new client';
-  }
 
   async findAll(paginationDto: PaginationDto) {
     const [data, results] = await this.clientRepo
@@ -37,10 +31,6 @@ export class ClientService {
 
     if (!result) throw new NotFoundException();
     return result;
-  }
-
-  update(id: string, updateClientDto: UpdateClientDto) {
-    return `This action updates a #${id} client`;
   }
 
   remove(id: string) {

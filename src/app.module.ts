@@ -7,6 +7,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { LogModule } from './log/log.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
     AccountModule,
     TransactionModule,
     LogModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
