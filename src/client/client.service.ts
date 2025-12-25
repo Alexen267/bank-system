@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Client } from './entities/client.entity';
 import { Repository } from 'typeorm';
 import { PaginationDto } from 'src/common/dto/pagination-dto';
+import { UpdateClientDto } from './dto/update-client.dto';
 
 @Injectable()
 export class ClientService {
@@ -33,7 +34,17 @@ export class ClientService {
     return result;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} client`;
+  async remove(id: string) {
+    const client = await this.clientRepo.findOneBy({ id });
+
+    if (!client) throw new NotFoundException();
+    return await this.clientRepo.delete({ id });
+  }
+
+  async update(id: string, updateClientDto: UpdateClientDto) {
+    const client = await this.clientRepo.findOneBy({ id });
+
+    if (!client) throw new NotFoundException();
+    return await this.clientRepo.update({ id }, { ...updateClientDto });
   }
 }

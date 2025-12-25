@@ -42,7 +42,10 @@ export class AuthService {
 
     await this.clientRepo.save(client);
     return {
-      token: this.jwtService.sign({ sub: client.id, email: client.email }),
+      acessToken: this.jwtService.sign({
+        sub: client.id,
+        username: client.username,
+      }),
     };
   }
 
@@ -63,9 +66,9 @@ export class AuthService {
     if (!isMatch) throw new UnauthorizedException('Invalid email or password');
     const { password, ...client } = foundClient;
     return {
-      token: this.jwtService.sign({
+      acessToken: this.jwtService.sign({
+        username: client.username,
         sub: client.id,
-        email: client.email,
       }),
     };
   }
