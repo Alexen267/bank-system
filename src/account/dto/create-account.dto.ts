@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import {
   IsBoolean,
   IsNumber,
@@ -14,6 +15,7 @@ export class CreateAccountDto {
   @IsNumber()
   @IsPositive()
   @IsOptional()
+  @Type(() => Number)
   balance?: number;
 
   @IsBoolean()
