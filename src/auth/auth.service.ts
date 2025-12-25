@@ -33,7 +33,6 @@ export class AuthService {
       ],
     });
 
-    console.log(match);
     if (match) throw new BadRequestException('Account already exists');
 
     const password = await bcrypt.hash(signUpDto.password, 12);

@@ -5,9 +5,11 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Client } from 'src/client/entities/client.entity';
 import { Account } from 'src/account/entities/account.entity';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
+    PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'very_goofy_256_secret',
       signOptions: {

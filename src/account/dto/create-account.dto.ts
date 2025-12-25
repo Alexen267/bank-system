@@ -1,6 +1,5 @@
 import {
   IsBoolean,
-  IsNotEmpty,
   IsNumber,
   IsOptional,
   IsPositive,
@@ -10,14 +9,14 @@ import {
 export class CreateAccountDto {
   @IsUUID()
   @IsOptional()
-  accountNo: string;
+  accountNo?: string;
 
   @IsNumber()
   @IsPositive()
   @IsOptional()
-  balance: number;
+  balance?: number;
 
   @IsBoolean()
   @IsOptional()
-  active: boolean;
+  active?: boolean;
 }
