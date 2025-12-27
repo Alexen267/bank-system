@@ -45,6 +45,7 @@ export class AuthService {
       acessToken: this.jwtService.sign({
         sub: client.id,
         username: client.username,
+        role: client.role,
       }),
     };
   }
@@ -69,6 +70,7 @@ export class AuthService {
       acessToken: this.jwtService.sign({
         username: client.username,
         sub: client.id,
+        role: client.role,
       }),
     };
   }

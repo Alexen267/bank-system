@@ -1,3 +1,4 @@
+import { Client } from 'src/client/entities/client.entity';
 import { Transaction } from 'src/transaction/entities/transaction.entity';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   Generated,
   Index,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -27,6 +29,9 @@ export class Account {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToOne(() => Client, (client) => client.account)
+  client: Client;
 
   @OneToMany(() => Transaction, (transaction) => transaction.sourceAccount)
   outgoingTransactions: Transaction[];

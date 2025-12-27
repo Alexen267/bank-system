@@ -1,5 +1,5 @@
 import { Account } from 'src/account/entities/account.entity';
-import { TransactionType } from 'src/common/enum/transactionEnum';
+import { TransactionType } from 'src/common/enum/transaction-type';
 import {
   Column,
   CreateDateColumn,

@@ -8,7 +8,7 @@ import {
   IsUUID,
   MinLength,
 } from 'class-validator';
-import { TransactionType } from 'src/common/enum/transactionEnum';
+import { TransactionType } from 'src/common/enum/transaction-type';
 
 export class CreateTransactionDto {
   @IsEnum(TransactionType)

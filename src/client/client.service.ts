@@ -4,12 +4,15 @@ import { Client } from './entities/client.entity';
 import { Repository } from 'typeorm';
 import { PaginationDto } from 'src/common/dto/pagination-dto';
 import { UpdateClientDto } from './dto/update-client.dto';
+import { Account } from 'src/account/entities/account.entity';
 
 @Injectable()
 export class ClientService {
   constructor(
     @InjectRepository(Client)
     private readonly clientRepo: Repository<Client>,
+    @InjectRepository(Account)
+    private readonly accountRepo: Repository<Account>,
   ) {}
 
   async findAll(paginationDto: PaginationDto) {
@@ -24,6 +27,22 @@ export class ClientService {
       results,
       page: paginationDto.page,
       data,
+    };
+  }
+
+  async findAccounts(id: string, paginationDto: PaginationDto) {
+    const [data, results] = await this.accountRepo
+      .createQueryBuilder('account')
+      .leftJoinAndSelect('account.client', 'client')
+      .where('client.id = :id', { id })
+      .offset((paginationDto.page - 1) * paginationDto.limit)
+      .limit(paginationDto.limit)
+      .getManyAndCount();
+
+    return {
+      data,
+      results,
+      page: paginationDto.page,
     };
   }
 

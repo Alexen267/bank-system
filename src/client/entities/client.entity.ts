@@ -1,4 +1,5 @@
 import { Account } from 'src/account/entities/account.entity';
+import { RoleType } from 'src/common/enum/role-type';
 import { Log } from 'src/log/entities/log.entity';
 import {
   Column,
@@ -40,6 +41,9 @@ export class Client {
   @Index({ unique: true })
   @Column({ length: 32 })
   phone: string;
+
+  @Column({ type: 'enum', enum: RoleType, default: RoleType.CLIENT })
+  role: RoleType;
 
   @OneToOne(() => Account)
   @JoinColumn()
